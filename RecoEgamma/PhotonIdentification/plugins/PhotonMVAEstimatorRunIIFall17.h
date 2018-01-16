@@ -1,5 +1,5 @@
-#ifndef RecoEgamma_PhotonIdentification_PhotonMVAEstimatorRunIISpring17_H
-#define RecoEgamma_PhotonIdentification_PhotonMVAEstimatorRunIISpring17_H
+#ifndef RecoEgamma_PhotonIdentification_PhotonMVAEstimatorRunIIFall17_H
+#define RecoEgamma_PhotonIdentification_PhotonMVAEstimatorRunIIFall17_H
 
 #include "FWCore/Framework/interface/ConsumesCollector.h"
 
@@ -21,7 +21,7 @@
 #include "TMVA/Reader.h"
 #include "TMVA/DataLoader.h"
 
-class PhotonMVAEstimatorRunIISpring17 : public AnyMVAEstimatorRun2Base{
+class PhotonMVAEstimatorRunIIFall17 : public AnyMVAEstimatorRun2Base{
   
  public:
 
@@ -57,8 +57,8 @@ class PhotonMVAEstimatorRunIISpring17 : public AnyMVAEstimatorRun2Base{
   };
   
   // Constructor and destructor
-  PhotonMVAEstimatorRunIISpring17(const edm::ParameterSet& conf);
-  ~PhotonMVAEstimatorRunIISpring17();
+  PhotonMVAEstimatorRunIIFall17(const edm::ParameterSet& conf);
+  ~PhotonMVAEstimatorRunIIFall17();
 
   // Calculation of the MVA value
   float mvaValue( const edm::Ptr<reco::Candidate>& particle, const edm::Event&) const;
@@ -92,7 +92,7 @@ class PhotonMVAEstimatorRunIISpring17 : public AnyMVAEstimatorRun2Base{
   // MVA name. This is a unique name for this MVA implementation.
   // It will be used as part of ValueMap names.
   // For simplicity, keep it set to the class name.
-  const std::string name_ = "PhotonMVAEstimatorRunIISpring17";
+  const std::string name_ = "PhotonMVAEstimatorRunIIFall17";
 
   // MVA tag. This is an additional string variable to distinguish
   // instances of the estimator of this class configured with different

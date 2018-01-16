@@ -1,9 +1,9 @@
-#include "RecoEgamma/PhotonIdentification/plugins/PhotonMVAEstimatorRunIISpring17.h"
+#include "RecoEgamma/PhotonIdentification/plugins/PhotonMVAEstimatorRunIIFall17.h"
 #include "FWCore/ParameterSet/interface/FileInPath.h"
 #include "TMVA/MethodBDT.h"
 #include <vector>
 
-PhotonMVAEstimatorRunIISpring17::PhotonMVAEstimatorRunIISpring17(const edm::ParameterSet& conf):
+PhotonMVAEstimatorRunIIFall17::PhotonMVAEstimatorRunIIFall17(const edm::ParameterSet& conf):
   AnyMVAEstimatorRun2Base(conf),
   MethodName_("BDTG method"),
   phoChargedIsolationLabel_(conf.getParameter<edm::InputTag>("phoChargedIsolation")), 
@@ -45,11 +45,11 @@ PhotonMVAEstimatorRunIISpring17::PhotonMVAEstimatorRunIISpring17(const edm::Para
   
 }
 
-PhotonMVAEstimatorRunIISpring17::
-~PhotonMVAEstimatorRunIISpring17(){
+PhotonMVAEstimatorRunIIFall17::
+~PhotonMVAEstimatorRunIIFall17(){
 }
 
-float PhotonMVAEstimatorRunIISpring17::
+float PhotonMVAEstimatorRunIIFall17::
 mvaValue(const edm::Ptr<reco::Candidate>& particle, const edm::Event& iEvent) const {  
   
   const int iCategory = findCategory( particle );
@@ -84,7 +84,7 @@ mvaValue(const edm::Ptr<reco::Candidate>& particle, const edm::Event& iEvent) co
   return result;
 }
 
-int PhotonMVAEstimatorRunIISpring17::findCategory( const edm::Ptr<reco::Candidate>& particle) const {
+int PhotonMVAEstimatorRunIIFall17::findCategory( const edm::Ptr<reco::Candidate>& particle) const {
   
   // Try to cast the particle into a reco particle.
   // This should work for both reco and pat.
@@ -110,7 +110,7 @@ int PhotonMVAEstimatorRunIISpring17::findCategory( const edm::Ptr<reco::Candidat
   return iCategory;
 }
 
-bool PhotonMVAEstimatorRunIISpring17::
+bool PhotonMVAEstimatorRunIIFall17::
 isEndcapCategory(int category) const {
   
   // For this specific MVA the function is trivial, but kept for possible
@@ -123,7 +123,7 @@ isEndcapCategory(int category) const {
 }
 
 
-std::unique_ptr<const GBRForest> PhotonMVAEstimatorRunIISpring17::
+std::unique_ptr<const GBRForest> PhotonMVAEstimatorRunIIFall17::
 createSingleReader(const int iCategory, const edm::FileInPath &weightFile){
   
   //
@@ -165,7 +165,7 @@ createSingleReader(const int iCategory, const edm::FileInPath &weightFile){
 }
 
 // A function that should work on both pat and reco objects
-std::vector<float> PhotonMVAEstimatorRunIISpring17::fillMVAVariables(const edm::Ptr<reco::Candidate>& particle, const edm::Event& iEvent) const {
+std::vector<float> PhotonMVAEstimatorRunIIFall17::fillMVAVariables(const edm::Ptr<reco::Candidate>& particle, const edm::Event& iEvent) const {
   
   // 
   // Declare all value maps corresponding to the above tokens
@@ -289,7 +289,7 @@ std::vector<float> PhotonMVAEstimatorRunIISpring17::fillMVAVariables(const edm::
   return vars;
 }
 
-void PhotonMVAEstimatorRunIISpring17::constrainMVAVariables(AllVariables&)const {
+void PhotonMVAEstimatorRunIIFall17::constrainMVAVariables(AllVariables&)const {
   
   // Check that variables do not have crazy values
   
@@ -299,7 +299,7 @@ void PhotonMVAEstimatorRunIISpring17::constrainMVAVariables(AllVariables&)const 
   
 }
 
-void PhotonMVAEstimatorRunIISpring17::setConsumes(edm::ConsumesCollector&& cc) const {
+void PhotonMVAEstimatorRunIIFall17::setConsumes(edm::ConsumesCollector&& cc) const {
   cc.consumes<edm::ValueMap<float> >(phoChargedIsolationLabel_);
   cc.consumes<edm::ValueMap<float> >(phoPhotonIsolationLabel_);
   cc.consumes<edm::ValueMap<float> >( phoWorstChargedIsolationLabel_);
@@ -307,6 +307,6 @@ void PhotonMVAEstimatorRunIISpring17::setConsumes(edm::ConsumesCollector&& cc) c
 }
 
 DEFINE_EDM_PLUGIN(AnyMVAEstimatorRun2Factory,
-                  PhotonMVAEstimatorRunIISpring17,
-                  "PhotonMVAEstimatorRunIISpring17");
+                  PhotonMVAEstimatorRunIIFall17,
+                  "PhotonMVAEstimatorRunIIFall17");
 

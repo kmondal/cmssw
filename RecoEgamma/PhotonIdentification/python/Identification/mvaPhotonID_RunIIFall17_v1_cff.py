@@ -15,7 +15,7 @@ import FWCore.ParameterSet.Config as cms
 #
 
 # This MVA implementation class name
-mvaSpring17v1ClassName = "PhotonMVAEstimatorRunIISpring17"
+mvaFall17v1ClassName = "PhotonMVAEstimatorRunIIFall17"
 # The tag is an extra string attached to the names of the products
 # such as ValueMaps that needs to distinguish cases when the same MVA estimator
 # class is used with different tuning/weights
@@ -26,12 +26,12 @@ mvaTag = "v1"
 #   0    barrel photons
 #   1    endcap photons
 
-mvaRunIISpring17WeightFiles_V1 = cms.vstring(
-    "RecoEgamma/PhotonIdentification/data/Spring17/HggPhoId_92X_barrel_BDT.weights.xml",
-    "RecoEgamma/PhotonIdentification/data/Spring17/HggPhoId_92X_endcap_BDT.weights.xml"
+mvaRunIIFall17WeightFiles_V1 = cms.vstring(
+    "RecoEgamma/PhotonIdentification/data/Fall17/HggPhoId_92X_barrel_BDT.weights.xml",
+    "RecoEgamma/PhotonIdentification/data/Fall17/HggPhoId_92X_endcap_BDT.weights.xml"
     )
 
-effAreasPath_pho = "RecoEgamma/PhotonIdentification/data/Spring17/effAreaPhotons_cone03_pfPhotons_90percentBased_TrueVtx.txt"
+effAreasPath_pho = "RecoEgamma/PhotonIdentification/data/Fall17/effAreaPhotons_cone03_pfPhotons_90percentBased_TrueVtx.txt"
 
 # Load some common definitions for MVA machinery
 from RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_tools \
@@ -43,13 +43,13 @@ from RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_tools \
 # The names for the maps are "<module name>:<MVA class name>Values" 
 # and "<module name>:<MVA class name>Categories"
 mvaProducerModuleLabel = "photonMVAValueMapProducer"
-mvaValueMapName        = mvaProducerModuleLabel + ":" + mvaSpring17v1ClassName + mvaTag + "Values"
-mvaCategoriesMapName   = mvaProducerModuleLabel + ":" + mvaSpring17v1ClassName + mvaTag + "Categories"
+mvaValueMapName        = mvaProducerModuleLabel + ":" + mvaFall17v1ClassName + mvaTag + "Values"
+mvaCategoriesMapName   = mvaProducerModuleLabel + ":" + mvaFall17v1ClassName + mvaTag + "Categories"
 
 # The working point for this MVA that is expected to have about 90% signal
 # efficiency in each category for photons with pt>30 GeV (somewhat lower
 # for lower pt photons).
-idName = "mvaPhoID-RunIISpring17-v1-wp90"
+idName = "mvaPhoID-RunIIFall17-v1-wp90"
 MVA_WP90 = PhoMVA_2Categories_WP(
     idName = idName,
     mvaValueMapName = mvaValueMapName,           # map with MVA values for all particles
@@ -61,7 +61,7 @@ MVA_WP90 = PhoMVA_2Categories_WP(
 # The working point for this MVA that is expected to have about 90% signal
 # efficiency in each category for photons with pt>30 GeV (somewhat lower
 # for lower pt photons).
-idName = "mvaPhoID-RunIISpring17-v1-wp80"
+idName = "mvaPhoID-RunIIFall17-v1-wp80"
 MVA_WP80 = PhoMVA_2Categories_WP(
     idName = idName,
     mvaValueMapName = mvaValueMapName,           # map with MVA values for all particles
@@ -75,10 +75,10 @@ MVA_WP80 = PhoMVA_2Categories_WP(
 #
 
 # Create the PSet that will be fed to the MVA value map producer
-mvaPhoID_RunIISpring17_v1_producer_config = cms.PSet( 
-    mvaName            = cms.string(mvaSpring17v1ClassName),
+mvaPhoID_RunIIFall17_v1_producer_config = cms.PSet( 
+    mvaName            = cms.string(mvaFall17v1ClassName),
     mvaTag             = cms.string(mvaTag),
-    weightFileNames    = mvaRunIISpring17WeightFiles_V1,
+    weightFileNames    = mvaRunIIFall17WeightFiles_V1,
     #
     # All the event content needed for this MVA implementation follows
     #
@@ -107,8 +107,8 @@ mvaPhoID_RunIISpring17_v1_producer_config = cms.PSet(
     )
 
 # Create the VPset's for VID cuts
-mvaPhoID_RunIISpring17_v1_wp90 = configureVIDMVAPhoID_V1( MVA_WP90 )
-mvaPhoID_RunIISpring17_v1_wp80 = configureVIDMVAPhoID_V1( MVA_WP80 )
+mvaPhoID_RunIIFall17_v1_wp90 = configureVIDMVAPhoID_V1( MVA_WP90 )
+mvaPhoID_RunIIFall17_v1_wp80 = configureVIDMVAPhoID_V1( MVA_WP80 )
 
 # The MD5 sum numbers below reflect the exact set of cut variables
 # and values above. If anything changes, one has to 
@@ -117,10 +117,10 @@ mvaPhoID_RunIISpring17_v1_wp80 = configureVIDMVAPhoID_V1( MVA_WP80 )
 # 3) update the MD5 sum strings below and uncomment the lines again.
 #
 
-central_id_registry.register( mvaPhoID_RunIISpring17_v1_wp90.idName,
+central_id_registry.register( mvaPhoID_RunIIFall17_v1_wp90.idName,
                               '0e737fa7da64b5e6e058130f783a5a64')
-central_id_registry.register( mvaPhoID_RunIISpring17_v1_wp80.idName,
+central_id_registry.register( mvaPhoID_RunIIFall17_v1_wp80.idName,
                               '67f3e11869b69ad650e993a443019e85')
 
-mvaPhoID_RunIISpring17_v1_wp90.isPOGApproved = cms.untracked.bool(False)
-mvaPhoID_RunIISpring17_v1_wp90.isPOGApproved = cms.untracked.bool(False)
+mvaPhoID_RunIIFall17_v1_wp90.isPOGApproved = cms.untracked.bool(False)
+mvaPhoID_RunIIFall17_v1_wp80.isPOGApproved = cms.untracked.bool(False)
