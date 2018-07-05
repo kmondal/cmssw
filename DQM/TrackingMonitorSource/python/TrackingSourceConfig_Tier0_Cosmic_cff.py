@@ -82,8 +82,7 @@ for module in selectedModules4cosmics :
     locals()[label].setLabel(label)
 
 # DQM Services
-from DQMServices.Core.DQMEDAnalyzer import DQMEDAnalyzer
-dqmInfoTracking = DQMEDAnalyzer('DQMEventInfo',
+dqmInfoTracking = cms.EDAnalyzer("DQMEventInfo",
      subSystemFolder = cms.untracked.string('Tracking')
 )
 

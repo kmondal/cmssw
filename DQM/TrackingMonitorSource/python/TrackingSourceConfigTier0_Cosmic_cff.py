@@ -68,8 +68,7 @@ TrackSplitMonitor.FolderName = 'Tracking/TrackParameters/SplitTracks'
 
 
 # DQM Services
-from DQMServices.Core.DQMEDAnalyzer import DQMEDAnalyzer
-dqmInfoTracking = DQMEDAnalyzer('DQMEventInfo',
+dqmInfoTracking = cms.EDAnalyzer("DQMEventInfo",
      subSystemFolder = cms.untracked.string('Tracking')
 )
 
