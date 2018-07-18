@@ -11,8 +11,8 @@ from RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_tools import *
 mvaTag           = "Run2Spring16NonTrigV1"
 mvaVariablesFile = "RecoEgamma/PhotonIdentification/data/PhotonMVAEstimatorRun2VariablesSpring16.txt"
 mvaWeightFiles = [
-    path.join(weightFileBaseDir, "2016/EB_V1.weights.xml.gz"),
-    path.join(weightFileBaseDir, "2016/EE_V1.weights.xml.gz"),
+    path.join(weightFileBaseDir, "Spring16/EB_V1.weights.xml.gz"),
+    path.join(weightFileBaseDir, "Spring16/EE_V1.weights.xml.gz"),
     ]
 effAreasPath_pho = "RecoEgamma/PhotonIdentification/data/Spring16/effAreaPhotons_cone03_pfPhotons_90percentBased_3bins.txt"
 

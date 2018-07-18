@@ -15,8 +15,8 @@ mvaTag = "RunIIFall17v2"
 
 mvaVariablesFile = "RecoEgamma/PhotonIdentification/data/PhotonMVAEstimatorRun2VariablesFall17V2.txt"
 mvaWeightFiles = [
-    path.join(weightFileBaseDir, "2017/EB_V2.weights.xml.gz"),
-    path.join(weightFileBaseDir, "2017/EE_V2.weights.xml.gz"),
+    path.join(weightFileBaseDir, "Fall17/EB_V2.weights.xml.gz"),
+    path.join(weightFileBaseDir, "Fall17/EE_V2.weights.xml.gz"),
     ]
 
 # Set up the VID working point parameters
