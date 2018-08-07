@@ -19,15 +19,17 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(100)
+    input = cms.untracked.int32(-1)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
   secondaryFileNames = cms.untracked.vstring(),
   fileNames = cms.untracked.vstring([
-            '/store/data/Run2016F/ZeroBias/AOD/PromptReco-v1/000/278/805/00000/CE3AC909-4763-E611-B327-02163E011EA9.root'
-  ])
+    INPUTFILES
+  ]),
+  #lumisToProcess = cms.untracked.VLuminosityBlockRange('302572:1-302572:21',)
+  #lumisToSkip = cms.untracked.VLuminosityBlockRange('1:1-1:6','2:100-3:max')
 )
 
 process.options = cms.untracked.PSet(
@@ -45,7 +47,7 @@ process.configurationMetadata = cms.untracked.PSet(
 process.DQMoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     outputCommands = process.DQMEventContent.outputCommands,
-    fileName = cms.untracked.string('step1_DQM_1.root'),
+    fileName = cms.untracked.string('PWD/step1_output/step1_DQM_INDEX.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('')
@@ -56,11 +58,12 @@ process.DQMoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_Prompt_v10', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '101X_dataRun2_Prompt_v10', '')
 
 # Tracker Data MC validation suite
 process.load('DQM.TrackingMonitorSource.TrackingDataMCValidation_Standalone_cff')
-process.analysis_step = cms.Path(process.standaloneValidationMinbias)
+process.analysis_step = cms.Path(process.standaloneValidationMuon)
+
 # Path and EndPath definitions
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.DQMoutput_step = cms.EndPath(process.DQMoutput)

@@ -26,7 +26,7 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source("PoolSource",
     secondaryFileNames = cms.untracked.vstring(),
     fileNames = cms.untracked.vstring([
-       'file:step1_DQM_1.root'
+"file:/afs/cern.ch/work/k/kmondal/public/DatavsMC/November2016_ReReco/CMSSW_8_0_20/src/DQM/TrackingMonitorSource/test/Jobs/Run280385/ZeroBias/PromptReco/step1_output/step1_DQM_1.root"
     ]),
     processingMode = cms.untracked.string('RunsAndLumis')
 )
@@ -49,7 +49,7 @@ process.configurationMetadata = cms.untracked.PSet(
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_Prompt_v10', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '101X_dataRun2_Prompt_v10', '')
 
 # Path and EndPath definitions
 process.edmtome_step = cms.Path(process.EDMtoME)

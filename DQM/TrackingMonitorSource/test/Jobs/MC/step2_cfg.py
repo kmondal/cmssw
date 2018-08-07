@@ -26,7 +26,8 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source("PoolSource",
     secondaryFileNames = cms.untracked.vstring(),
     fileNames = cms.untracked.vstring([
-       'file:step1_DQM_1.root'
+"file:/afs/cern.ch/work/k/kmondal/public/DatavsMC/June2018_v1/Prompt2018/CMSSW_10_1_4_patch1/src/DQM/TrackingMonitorSource/test/Jobs/Run316082/MC/ZtoEE/step1_output/step1_DQM_1.root",
+"file:/afs/cern.ch/work/k/kmondal/public/DatavsMC/June2018_v1/Prompt2018/CMSSW_10_1_4_patch1/src/DQM/TrackingMonitorSource/test/Jobs/Run316082/MC/ZtoEE/step1_output/step1_DQM_91.root"
     ]),
     processingMode = cms.untracked.string('RunsAndLumis')
 )
@@ -49,7 +50,7 @@ process.configurationMetadata = cms.untracked.PSet(
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_Prompt_v10', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v7', '')
 
 # Path and EndPath definitions
 process.edmtome_step = cms.Path(process.EDMtoME)
