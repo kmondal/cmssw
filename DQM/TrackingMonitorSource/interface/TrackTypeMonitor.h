@@ -30,7 +30,6 @@ public:
 protected:
 
   void analyze(edm::Event const& iEvent, edm::EventSetup const& iSetup) override;
-  void endLuminosityBlock(edm::LuminosityBlock const& lumiSeg, edm::EventSetup const& eSetup);
   void bookHistograms(DQMStore::IBooker &, edm::Run const &, edm::EventSetup const &);
 
 private:
