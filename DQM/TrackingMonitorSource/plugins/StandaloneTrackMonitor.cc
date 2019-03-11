@@ -481,9 +481,9 @@ void StandaloneTrackMonitor::analyze(edm::Event const& iEvent, edm::EventSetup c
   if (verbose_) std::cout << "Begin StandaloneTrackMonitor" << std::endl;
 
   // Get event setup (to get global transformation)                                  
-  //edm::ESHandle<TrackerGeometry> geomHandle;
-  //iSetup.get<TrackerDigiGeometryRecord>().get(geomHandle);
-  //const TrackerGeometry& tkGeom = (*geomHandle);
+  edm::ESHandle<TrackerGeometry> geomHandle;
+  iSetup.get<TrackerDigiGeometryRecord>().get(geomHandle);
+  const TrackerGeometry& tkGeom = (*geomHandle);
   //std::cout << "Debug level 1" << std::endl;
   
   // Primary vertex collection
@@ -855,7 +855,7 @@ void StandaloneTrackMonitor::analyze(edm::Event const& iEvent, edm::EventSetup c
 	nlostTIDHitsH_->Fill(nLostStripTIDHits, wfac);
 	nlostTECHitsH_->Fill(nLostStripTECHits, wfac);
       }
-      /*int nStripTIBS = 0, nStripTOBS = 0, nStripTECS = 0, nStripTIDS = 0;
+      int nStripTIBS = 0, nStripTOBS = 0, nStripTECS = 0, nStripTIDS = 0;
       int nStripTIBD = 0, nStripTOBD = 0, nStripTECD = 0, nStripTIDD = 0;
       for (auto it = track.recHitsBegin(); it != track.recHitsEnd(); ++it) {
         const TrackingRecHit& hit = (**it);
@@ -864,7 +864,7 @@ void StandaloneTrackMonitor::analyze(edm::Event const& iEvent, edm::EventSetup c
 	    int subdetId = hit.geographicalId().subdetId();
             
             // Find on-track clusters
-            //processHit(hit, iSetup, tkGeom, wfac);
+            processHit(hit, iSetup, tkGeom, wfac);
 	    
 	    const DetId detId(hit.geographicalId());
 	    const SiStripDetId stripId(detId);
@@ -899,7 +899,7 @@ void StandaloneTrackMonitor::analyze(edm::Event const& iEvent, edm::EventSetup c
       nHitsTOBDVsEtaH_->Fill(eta, nStripTOBD);
       nHitsTECDVsEtaH_->Fill(eta, nStripTECD);
       nHitsTIDDVsEtaH_->Fill(eta, nStripTIDD);
-      nHitsStripDVsEtaH_->Fill(eta, nStripTIBD+nStripTOBD+nStripTECD+nStripTIDD);*/
+      nHitsStripDVsEtaH_->Fill(eta, nStripTIBD+nStripTOBD+nStripTECD+nStripTIDD);
     }
     //std::cout << "Debug level 8" << std::endl;
   } 
@@ -909,7 +909,7 @@ void StandaloneTrackMonitor::analyze(edm::Event const& iEvent, edm::EventSetup c
   if (haveAllHistograms_) nTracksH_->Fill(ntracks, wfac);
   
   // off track cluster properties
-  //processClusters(iEvent, iSetup, tkGeom, wfac);
+  processClusters(iEvent, iSetup, tkGeom, wfac);
   
   if (verbose_) std::cout << "Ends StandaloneTrackMonitor successfully" << std::endl;
   }
